@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:story_view/controller/story_controller.dart';
+import 'package:story_view/widgets/story_view.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 import 'package:tinder/constants.dart/constant.dart';
 import 'package:tinder/function/actions.dart';
@@ -61,7 +63,13 @@ class _HomeState extends State<Home> {
     'Grammys',
     'Alex GH'
   ];
-
+    final storyController = StoryController();
+   @override
+  void dispose() {
+    storyController.dispose();
+    super.dispose();
+  }
+  
   @override
   void initState() {
     for (int i = 0; i < images.length; i++) {
@@ -117,101 +125,7 @@ class _HomeState extends State<Home> {
                             matchEngine: _matchEngine!,
                             itemBuilder: (BuildContext context, int index) {
                               return
-                                  // Column(
-                                  //   children: [
-                                  //     Container(
-                                  //       height: MediaQuery.of(context).size.height *
-                                  //           0.7,
-                                  //       width:
-                                  //           MediaQuery.of(context).size.width * 0.8,
-                                  //       alignment: Alignment.bottomLeft,
-                                  //       decoration: BoxDecoration(
-                                  //           image: DecorationImage(
-                                  //               image: NetworkImage(images[index]),
-                                  //               fit: BoxFit.cover),
-                                  //           color: Colors.white,
-                                  //           borderRadius:
-                                  //               BorderRadius.circular(10)),
-                                  //       padding: const EdgeInsets.all(20),
-                                  //       child: Column(
-                                  //         mainAxisSize: MainAxisSize.min,
-                                  //         children: [
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //            Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //            Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //            Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //           Text(
-                                  //             names[index],
-                                  //             style: const TextStyle(
-                                  //                 fontSize: 32,
-                                  //                 color: Colors.white,
-                                  //                 fontWeight: FontWeight.bold),
-                                  //           ),
-                                  //         ],
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // );
-                                  AnimatedContainer(
+                                 AnimatedContainer(
                                 duration: const Duration(seconds: 100),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
@@ -224,17 +138,16 @@ class _HomeState extends State<Home> {
                                           : const NeverScrollableScrollPhysics(),
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(20),
-                                        color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.white,
                                         ),
-                                                            
                                         child: Column(
                                           children: [
                                             Stack(
                                               children: [
                                                 ClipRRect(
-                                                  child:
-                                                   Container(
+                                                  child: SizedBox(
                                                     height: isPressed
                                                         ? MediaQuery.of(context)
                                                                 .size
@@ -243,46 +156,80 @@ class _HomeState extends State<Home> {
                                                         : MediaQuery.of(context)
                                                                 .size
                                                                 .height *
-                                                            0.68,
-                                                    width: MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.82,
-                                                    alignment:
-                                                        Alignment.bottomLeft,
-                                                    decoration: BoxDecoration(
-                                                        image: DecorationImage(
-                                                            image: NetworkImage(
-                                                                images[index]),
-                                                            fit: BoxFit.cover),
-                                                        color: Colors.white,
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                10)),
-                                                    padding:
-                                                        const EdgeInsets.all(20),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      children: [
-                                                        Text(
-                                                          names[index],
-                                                          style: const TextStyle(
-                                                              fontSize: 32,
-                                                              color: Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold),
-                                                        ),
-                                                      ],
+                                                            0.68, // Adjust the height as needed
+                                                    child: StoryView(
+                                                      storyItems: List.generate(
+                                                        images.length,
+                                                        (index) {
+                                                          return StoryItem .pageImage(
+                                                             url: images[index],
+                                                           
+                                                            controller: storyController,
+                                                          );
+                                                        },
+                                                      ),
+                                                      progressPosition:
+                                                          ProgressPosition.top,
+                                                      repeat: false,
+                                                      inline: true,
+                                                      controller:
+                                                          storyController,
                                                     ),
                                                   ),
+
+                                                  // Container(
+                                                  //   height:
+                                                  // isPressed
+                                                  //       ? MediaQuery.of(context)
+                                                  //               .size
+                                                  //               .height *
+                                                  //           0.5
+                                                  //       : MediaQuery.of(context)
+                                                  //               .size
+                                                  //               .height *
+                                                  //           0.68,
+                                                  //   width:
+                                                  //       MediaQuery.of(context)
+                                                  //               .size
+                                                  //               .width *
+                                                  //           0.82,
+                                                  //   alignment:
+                                                  //       Alignment.bottomLeft,
+                                                  //   decoration: BoxDecoration(
+                                                  //       image: DecorationImage(
+                                                  //           image: NetworkImage(
+                                                  //               images[index]),
+                                                  //           fit: BoxFit.cover),
+                                                  //       color: Colors.white,
+                                                  //       borderRadius:
+                                                  //           BorderRadius
+                                                  //               .circular(10)),
+                                                  //   padding:
+                                                  //       const EdgeInsets.all(
+                                                  //           20),
+                                                  //   child: Column(
+                                                  //     mainAxisSize:
+                                                  //         MainAxisSize.min,
+                                                  //     children: [
+                                                  //       Text(
+                                                  //         names[index],
+                                                  //         style: const TextStyle(
+                                                  //             fontSize: 32,
+                                                  //             color:
+                                                  //                 Colors.white,
+                                                  //             fontWeight:
+                                                  //                 FontWeight
+                                                  //                     .bold),
+                                                  //       ),
+                                                  //     ],
+                                                  //   ),
+                                                  // ),
                                                 ),
-                                      
+
                                                 // Positioned(
                                                 //   top: 200,
                                                 //   left: 150,
-                                      
+
                                                 //   child: Center(
                                                 //     child: Visibility(
                                                 //       visible: true,
@@ -300,7 +247,7 @@ class _HomeState extends State<Home> {
                                                 //     child: Visibility(
                                                 //       visible: true,
                                                 //       child: Image.asset(
-                                      
+
                                                 //         'assets/cross.png',
                                                 //         width: 100,
                                                 //       ), // Replace with your GIF asset path
@@ -314,7 +261,10 @@ class _HomeState extends State<Home> {
                                                     child: Visibility(
                                                       visible: showStarsGif,
                                                       child: Image.asset(
-                                                          'assets/stars.gif' , width: 150, height: 130,), // Replace with your GIF asset path
+                                                        'assets/stars.gif',
+                                                        width: 150,
+                                                        height: 130,
+                                                      ), // Replace with your GIF asset path
                                                     ),
                                                   ),
                                                 ),
@@ -327,11 +277,13 @@ class _HomeState extends State<Home> {
                                                 ? ClipRRect(
                                                     child: Container(
                                                       height: isPressed
-                                                          ? MediaQuery.of(context)
+                                                          ? MediaQuery.of(
+                                                                      context)
                                                                   .size
                                                                   .height *
                                                               0.5
-                                                          : MediaQuery.of(context)
+                                                          : MediaQuery.of(
+                                                                      context)
                                                                   .size
                                                                   .height *
                                                               0.7,
@@ -345,12 +297,15 @@ class _HomeState extends State<Home> {
                                                       decoration: BoxDecoration(
                                                           image: DecorationImage(
                                                               image: NetworkImage(
-                                                                  images[index]),
-                                                              fit: BoxFit.cover),
+                                                                  images[
+                                                                      index]),
+                                                              fit:
+                                                                  BoxFit.cover),
                                                           color: Colors.white,
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(10)),
+                                                                  .circular(
+                                                                      10)),
                                                       padding:
                                                           const EdgeInsets.all(
                                                               20),
@@ -362,8 +317,8 @@ class _HomeState extends State<Home> {
                                                             names[index],
                                                             style: const TextStyle(
                                                                 fontSize: 32,
-                                                                color:
-                                                                    Colors.white,
+                                                                color: Colors
+                                                                    .white,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold),
@@ -383,8 +338,8 @@ class _HomeState extends State<Home> {
                                                               .height,
                                                       decoration: BoxDecoration(
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                20),
+                                                            BorderRadius
+                                                                .circular(20),
                                                         color: Colors.white,
                                                       ),
                                                       child: Column(
@@ -402,9 +357,8 @@ class _HomeState extends State<Home> {
                                                                               32,
                                                                           color: Colors
                                                                               .black,
-                                                                          fontWeight:
-                                                                              FontWeight
-                                                                                  .bold),
+                                                                          fontWeight: FontWeight
+                                                                              .bold),
                                                                       textAlign:
                                                                           TextAlign
                                                                               .left),
@@ -421,8 +375,7 @@ class _HomeState extends State<Home> {
                                                                         fontSize:
                                                                             24,
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w400,
+                                                                            FontWeight.w400,
                                                                       ),
                                                                       textAlign:
                                                                           TextAlign
@@ -442,8 +395,7 @@ class _HomeState extends State<Home> {
                                                                         color: Colors
                                                                             .black,
                                                                         fontWeight:
-                                                                            FontWeight
-                                                                                .w400,
+                                                                            FontWeight.w400,
                                                                       ),
                                                                       textAlign:
                                                                           TextAlign
@@ -455,7 +407,7 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   )
                                                 : const SizedBox.shrink(),
-                                      
+
                                             const SizedBox(
                                               height: 20,
                                             ),
