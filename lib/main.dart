@@ -147,7 +147,10 @@ class _HomeState extends State<Home> {
                                             Stack(
                                               children: [
                                                 ClipRRect(
-                                                  child: SizedBox(
+                                                  child: Container(
+                                                    decoration:BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(20)
+                                                    ),     
                                                     height: isPressed
                                                         ? MediaQuery.of(context)
                                                                 .size
